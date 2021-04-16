@@ -23,6 +23,7 @@ public class LutadorController {
         return ResponseEntity.status(201).build();
     }
 
+
     @GetMapping
     public ResponseEntity getLutador() {
         List<Lutador> lutadores = repository.findAll();
@@ -30,10 +31,18 @@ public class LutadorController {
             return ResponseEntity.status(204).build();
         }
 
-        return ResponseEntity.status(200).body(lutadores);
+        return ResponseEntity.status(200).body(repository.findByLutadorOrderByforcaGolpeAsc());
+
 
     }
 
-    
+    @GetMapping("/contagem-vivos")
+    public ResponseEntity getVivos() {
+        return ResponseEntity.status(200).body(repository.findByVivoTrue());
+    }
 
+    @GetMapping("/mortos")
+    public ResponseEntity getMortos() {
+        return ResponseEntity.status(200).body(repository.findByVivoFalse());
+    }
 }

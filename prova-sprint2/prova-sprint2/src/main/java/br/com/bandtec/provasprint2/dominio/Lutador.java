@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Lutador {
@@ -11,7 +14,10 @@ public class Lutador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotBlank
+    @Size(min = 3 , max = 12)
     private String nome;
+    @DecimalMin("0")
     private Double forcaGolpe;
     private Double vida = 100.0;
     private Integer concentracoesRealizadas = 0;
