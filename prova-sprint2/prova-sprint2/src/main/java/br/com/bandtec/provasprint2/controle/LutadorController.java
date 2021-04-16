@@ -38,7 +38,7 @@ public class LutadorController {
 
     @GetMapping("/contagem-vivos")
     public ResponseEntity getVivos() {
-        return ResponseEntity.status(200).body(repository.findByVivoTrue());
+        return ResponseEntity.status(200).body(repository.findByVivoTrue().stream().count());
     }
 
     @GetMapping("/mortos")
